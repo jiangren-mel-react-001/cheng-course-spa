@@ -4,12 +4,7 @@ import './App.css';
 import { Nav, NavItem, Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
-
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import { CoursesContainer } from './courses/courses-container';
