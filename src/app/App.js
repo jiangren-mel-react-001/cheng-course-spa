@@ -39,7 +39,7 @@ class App extends Component {
         <LinkContainer to="/login">
           <NavItem>Login</NavItem>
         </LinkContainer>
-      );
+    );
 
     return (
       <Router>
@@ -75,8 +75,8 @@ class App extends Component {
             <Route exact path="/courses" render={props => <CourseContainer {...props} />} />
             <Route exact path="/teachers" component={TeachersContainer} />
             <Route exact path="/students" component={StudentsContainer} />
-            <PrivateRoute exact path="/courses/create" token={this.state.token} render={
-              ({ history }) => <CourseCreate history={history} />
+            <Route exact path="/courses/create" render={
+              ({ history }) => this.state.token ? <CourseCreate history={history} /> : <Redirect to='/login' />
             } />
             <Route exact path="/courses/detail" render={
               ({ location, history }) => <CourseDetail detail={location.state.detail}
@@ -92,17 +92,17 @@ class App extends Component {
   }
 }
 
-const PrivateRoute = ({ component: Component, token, ...rest }) => (
-  <Route {...rest} render={props => (
-    token ? (
-      <Component {...props} />
-    ) : (
-        <Redirect to={{
-          pathname: '/login',
-          state: { from: props.location }
-        }} />
-      )
-  )} />
-)
+// const PrivateRoute = ({ component: Component, token, render, ...rest }) => (
+//   <Route {...rest} render={props => (
+//     token ? (
+//       {render}
+//     ) : (
+//         <Redirect to={{
+//           pathname: '/login',
+//           state: { from: props.location }
+//         }} />
+//       )
+//   )} />
+// )
 
 export default App;
