@@ -15,8 +15,32 @@ import CourseDetail from './courses/CourseDetail';
 import CourseEdit from './courses/CourseEdit';
 import CourseCreate from './courses/CourseCreate';
 
+import { Login } from './login/login';
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      token: ''
+    };
+    this.onTokenChanged = this.onTokenChanged.bind(this);
+  }
+  onTokenChanged(newToken) {
+    this.setState({
+      token: newToken
+    })
+  }
   render() {
+    const loginLink = this.state.token ? (
+      <LinkContainer to="/">
+        <NavItem onClick={() => this.setState({token: ''})}>Logout</NavItem>
+      </LinkContainer>
+    ) : (
+      <LinkContainer to="/login">
+        <NavItem>Login</NavItem>
+      </LinkContainer>
+    );
+
     return (
       <Router>
         <div>
@@ -40,14 +64,14 @@ class App extends Component {
                 </LinkContainer>
               </Nav>
               <Nav pullRight>
-                <NavItem eventKey={1} href="#">
-                  Login
-                </NavItem>
+                {loginLink}
               </Nav>
             </Navbar.Collapse>
           </Navbar>
           <Switch>
             <Route exact path="/" component={CourseContainer} />
+            <Route exact path="/login" render={
+              props => <Login onTokenChanged={this.onTokenChanged} {...props} />} />
             <Route exact path="/courses" render={props => <CourseContainer {...props} />}/>
             <Route exact path="/teachers" component={TeachersContainer} />
             <Route exact path="/students" component={StudentsContainer} />

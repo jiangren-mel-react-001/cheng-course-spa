@@ -6,7 +6,8 @@ export default class CourseCreate extends React.Component {
         super(props);
         this.state = {
             name: '',
-            description: ''
+            description: '',
+            image: ''
         };
         this.onInputChange = this.onInputChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
