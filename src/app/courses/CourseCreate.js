@@ -21,7 +21,8 @@ export default class CourseCreate extends React.Component {
         event.preventDefault();
         axios.post(`https://jr-001-pawpatrol-course-api.herokuapp.com/api/courses`, {
             name: this.state.name,
-            description: this.state.description
+            description: this.state.description,
+            image: this.state.image
         }).then(({data}) => {
             this.props.history.push({
                 pathname: `/courses/detail`,
