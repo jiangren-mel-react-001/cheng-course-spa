@@ -24,7 +24,7 @@ export default class CourseCreate extends React.Component {
             description: this.state.description
         }).then(({data}) => {
             this.props.history.push({
-                pathname: `/course/detail`,
+                pathname: `/courses/detail`,
                 state: { detail: data }
             });
         }).catch(err => console.log(err))

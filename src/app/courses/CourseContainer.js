@@ -1,13 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Route, Redirect } from 'react-router'
+import { Route, Redirect, Switch } from 'react-router'
 
 import CourseItem from './CourseItem';
-import CourseDetail from './CourseDetail';
-import CourseEdit from './CourseEdit';
-import CourseCreate from './CourseCreate';
-
 
 export class CourseContainer extends React.Component {
     constructor(props) {
@@ -32,7 +28,7 @@ export class CourseContainer extends React.Component {
 
     onClickDetail = (aCourse) => {
         this.props.history.push({
-            pathname: `/course/detail`,
+            pathname: `/courses/detail`,
             state: { detail: aCourse }
         });
     }
@@ -55,23 +51,13 @@ export class CourseContainer extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <Link className="btn btn-primary" to="/course/create">Add a new course</Link>
+                    <Link className="btn btn-primary" to="/courses/create">Add a new course</Link>
                 </div>
                 <div className="row">
                     {courses}
                 </div>
             </div>
             
-            <Route exact path="/course/create" render={
-                ({ history }) =><CourseCreate history={history} />
-            } />
-            <Route exact path={`${this.props.match.url}/details`} render={
-                ({ location, history }) => <CourseDetail detail={location.state.detail}
-                history={history}/>
-            }/>
-            <Route exact path="/course/edit" render={
-                ({ location, history }) => <CourseEdit detail={location.state.detail} history={history} />
-            }/>
         </div>
         );
     }

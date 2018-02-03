@@ -4,12 +4,17 @@ import './App.css';
 import { Nav, NavItem, Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import { CourseContainer } from './courses/CourseContainer';
 import { StudentsContainer } from './students/students-container';
 import { TeachersContainer } from './teachers/teachers-container';
+
+import CourseItem from './courses/CourseItem';
+import CourseDetail from './courses/CourseDetail';
+import CourseEdit from './courses/CourseEdit';
+import CourseCreate from './courses/CourseCreate';
 
 class App extends Component {
   render() {
@@ -42,11 +47,22 @@ class App extends Component {
               </Nav>
             </Navbar.Collapse>
           </Navbar>
-
-          <Route exact path="/" component={CourseContainer} />
-          <Route path="/courses" render={props => <CourseContainer {...props} />}/>
-          <Route path="/teachers" component={TeachersContainer} />
-          <Route path="/students" component={StudentsContainer} />
+          <Switch>
+            <Route exact path="/" component={CourseContainer} />
+            <Route exact path="/courses" render={props => <CourseContainer {...props} />}/>
+            <Route exact path="/teachers" component={TeachersContainer} />
+            <Route exact path="/students" component={StudentsContainer} />
+                <Route exact path="/courses/create" render={
+                    ({ history }) =><CourseCreate history={history} />
+                } />
+                <Route exact path="/courses/detail" render={
+                    ({ location, history }) => <CourseDetail detail={location.state.detail}
+                    history={history}/>
+                }/>
+                <Route exact path="/courses/edit" render={
+                    ({ location, history }) => <CourseEdit detail={location.state.detail} history={history} />
+                }/>
+          </Switch>
         </div>
       </Router>
     );

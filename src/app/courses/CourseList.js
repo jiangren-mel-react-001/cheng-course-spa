@@ -28,7 +28,7 @@ export default class CourseList extends React.Component {
 
     onClickDetail = (aCourse) => {
         this.props.history.push({
-            pathname: `/course/detail`,
+            pathname: `/courses/detail`,
             state: { detail: aCourse }
         });
     }
@@ -50,7 +50,7 @@ export default class CourseList extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <Link className="btn btn-primary" to="/course/create">Add a new course</Link>
+                    <Link className="btn btn-primary" to="/courses/create">Add a new course</Link>
                     <LoadingStatus loading={this.state.loading} />
                 </div>
                 <div className="row">
