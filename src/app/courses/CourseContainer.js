@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import CourseItem from './CourseItem';
+import { Spinner } from '../shared/Spinner';
 
 export class CourseContainer extends React.Component {
     constructor(props) {
@@ -51,6 +52,7 @@ export class CourseContainer extends React.Component {
                 </div>
                 <div className="row">
                     <Link className="btn btn-primary" to="/courses/create">Add a new course</Link>
+                    <Spinner loading={this.state.loading} />
                 </div>
                 <div className="row">
                     {courses}
