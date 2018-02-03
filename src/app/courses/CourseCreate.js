@@ -48,6 +48,14 @@ export default class CourseCreate extends React.Component {
                         onChange={this.onInputChange}
                     />
                 </div>
+                <div className="form-group">
+                    <label>Course image</label>
+                    <textarea type="text" className="form-control" 
+                        name="image" 
+                        value={this.state.image} 
+                        onChange={this.onInputChange}
+                    />
+                </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         );
