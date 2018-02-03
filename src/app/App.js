@@ -11,7 +11,6 @@ import { CourseContainer } from './courses/CourseContainer';
 import { StudentsContainer } from './students/students-container';
 import { TeachersContainer } from './teachers/teachers-container';
 
-import CourseItem from './courses/CourseItem';
 import CourseDetail from './courses/CourseDetail';
 import CourseEdit from './courses/CourseEdit';
 import CourseCreate from './courses/CourseCreate';
