@@ -4,7 +4,7 @@ import './App.css';
 import { Nav, NavItem, Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import { CourseContainer } from './courses/CourseContainer';
@@ -33,13 +33,13 @@ class App extends Component {
   render() {
     const loginLink = this.state.token ? (
       <LinkContainer to="/">
-        <NavItem onClick={() => this.setState({token: ''})}>Logout</NavItem>
+        <NavItem onClick={() => this.setState({ token: '' })}>Logout</NavItem>
       </LinkContainer>
     ) : (
-      <LinkContainer to="/login">
-        <NavItem>Login</NavItem>
-      </LinkContainer>
-    );
+        <LinkContainer to="/login">
+          <NavItem>Login</NavItem>
+        </LinkContainer>
+      );
 
     return (
       <Router>
@@ -72,24 +72,37 @@ class App extends Component {
             <Route exact path="/" component={CourseContainer} />
             <Route exact path="/login" render={
               props => <Login onTokenChanged={this.onTokenChanged} {...props} />} />
-            <Route exact path="/courses" render={props => <CourseContainer {...props} />}/>
+            <Route exact path="/courses" render={props => <CourseContainer {...props} />} />
             <Route exact path="/teachers" component={TeachersContainer} />
             <Route exact path="/students" component={StudentsContainer} />
-                <Route exact path="/courses/create" render={
-                    ({ history }) =><CourseCreate history={history} />
-                } />
-                <Route exact path="/courses/detail" render={
-                    ({ location, history }) => <CourseDetail detail={location.state.detail}
-                    history={history}/>
-                }/>
-                <Route exact path="/courses/edit" render={
-                    ({ location, history }) => <CourseEdit detail={location.state.detail} history={history} />
-                }/>
+            <PrivateRoute exact path="/courses/create" token={this.state.token} render={
+              ({ history }) => <CourseCreate history={history} />
+            } />
+            <Route exact path="/courses/detail" render={
+              ({ location, history }) => <CourseDetail detail={location.state.detail}
+                history={history} />
+            } />
+            <Route exact path="/courses/edit" render={
+              ({ location, history }) => <CourseEdit detail={location.state.detail} history={history} />
+            } />
           </Switch>
         </div>
       </Router>
     );
   }
 }
+
+const PrivateRoute = ({ component: Component, token, ...rest }) => (
+  <Route {...rest} render={props => (
+    token ? (
+      <Component {...props} />
+    ) : (
+        <Redirect to={{
+          pathname: '/login',
+          state: { from: props.location }
+        }} />
+      )
+  )} />
+)
 
 export default App;
