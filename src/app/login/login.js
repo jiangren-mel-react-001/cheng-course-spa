@@ -29,7 +29,6 @@ export class Login extends React.Component {
         })
     }
     render() {
-        const { onTokenChanged, history } = this.props;
         return (
             <form className="container">
                 <div className="form-signin">
