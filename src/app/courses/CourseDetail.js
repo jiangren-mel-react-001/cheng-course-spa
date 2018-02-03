@@ -9,7 +9,7 @@ export default class CourseDetail extends React.Component {
     }
     onDelete(event) {
         axios.delete(`https://jr-001-pawpatrol-course-api.herokuapp.com/api/courses/${this.props.detail.id}`)
-            .then(response => this.props.history.push('/course'))
+            .then(response => this.props.history.push('/courses'))
             .catch(err => console.log(err));
     }
     render() {
