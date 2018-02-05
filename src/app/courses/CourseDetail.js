@@ -8,16 +8,18 @@ export default class CourseDetail extends React.Component {
         this.onDelete = this.onDelete.bind(this);
     }
     onDelete(event) {
-        axios.delete(`https://jr-001-pawpatrol-course-api.herokuapp.com/api/courses/${this.props.detail.id}`)
+        const {detail} = this.props.location.state;
+        axios.delete(`https://jr-001-pawpatrol-course-api.herokuapp.com/api/courses/${detail.id}`)
             .then(response => this.props.history.push('/courses'))
             .catch(err => console.log(err));
     }
     render() {
+        const {detail} = this.props.location.state;
         return (
             <div className="container">
-                <h2>{this.props.detail.name}</h2>
-                <p>{this.props.detail.description}</p>
-                <img src={this.props.detail.image} alt="please check the resource" className="img-responsive" />
+                <h2>{detail.name}</h2>
+                <p>{detail.description}</p>
+                <img src={detail.image} alt="please check the resource" className="img-responsive" />
 
                 <div>
                 <Link className="btn btn-primary" to={{
