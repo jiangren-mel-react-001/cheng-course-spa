@@ -15,13 +15,9 @@ export default class CourseDetail extends React.Component {
     }
     render() {
         const {detail} = this.props.location.state;
-        return (
-            <div className="container">
-                <h2>{detail.name}</h2>
-                <p>{detail.description}</p>
-                <img src={detail.image} alt="please check the resource" className="img-responsive" />
-
-                <div>
+        const {token} = this.props;
+        const editButtons = token && (
+            <div>
                 <Link className="btn btn-primary" to={{
                     pathname: '/courses/edit',
                     state: { detail: this.props.detail }
@@ -31,7 +27,14 @@ export default class CourseDetail extends React.Component {
                 <button className="btn btn-danger" onClick={this.onDelete}>
                     Delete
                 </button>
-                </div>
+            </div>
+        );
+        return (
+            <div className="container">
+                <h2>{detail.name}</h2>
+                <p>{detail.description}</p>
+                <img src={detail.image} alt="please check the resource" className="img-responsive" />
+                {editButtons}
             </div>
         );
     }
