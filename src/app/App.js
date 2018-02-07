@@ -8,12 +8,14 @@ import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import { CourseContainer } from './courses/CourseContainer';
-import { StudentsContainer } from './students/students-container';
-import { TeachersContainer } from './teachers/teachers-container';
-
 import CourseDetail from './courses/CourseDetail';
 import CourseEdit from './courses/CourseEdit';
 import CourseCreate from './courses/CourseCreate';
+
+import { LessonContainer } from './lessons/LessonContainer';
+
+import { StudentsContainer } from './students/students-container';
+import { TeachersContainer } from './teachers/teachers-container';
 
 import { Login } from './login/login';
 
@@ -71,21 +73,29 @@ class App extends Component {
             </Navbar.Collapse>
           </Navbar>
           <Switch>
-            <PublicRoute exact path="/" token={this.state.token} componentRender={{component: CourseContainer}} />
-            <PublicRoute exact path="/login" token={this.state.token} componentRender={{
-              component: Login,
-              onTokenChanged: this.onTokenChanged
-            }} />
-            <PublicRoute exact path="/courses" token={this.state.token} componentRender={{component: CourseContainer}} />
+            <PublicRoute exact path="/" token={this.state.token}
+              componentRender={{component: CourseContainer}} />
+            <PublicRoute exact path="/login" token={this.state.token}
+              componentRender={{
+                component: Login,
+                onTokenChanged: this.onTokenChanged
+              }} />
+            <PublicRoute exact path="/courses" token={this.state.token}
+              componentRender={{component: CourseContainer}} />
             <AuthRoute exact path="/teachers" token={this.state.token}
               componentRender={{component: TeachersContainer}} />
             <AuthRoute exact path="/students" token={this.state.token}
               componentRender={{component: StudentsContainer}} />
             <AuthRoute exact path="/courses/create" token={this.state.token}
               componentRender={{component: CourseCreate}} />
-            <PublicRoute exact path="/courses/detail" token={this.state.token} componentRender={{component: CourseDetail}} />
+            <PublicRoute exact path="/courses/detail" token={this.state.token}
+              componentRender={{component: CourseDetail}} />
             <AuthRoute exact path="/courses/edit" token={this.state.token}
               componentRender={{component: CourseEdit}} />
+
+            <PublicRoute exact path="/lessons" token={this.state.token}
+              componentRender={{component: LessonContainer}} />
+
           </Switch>
         </div>
       </Router>
