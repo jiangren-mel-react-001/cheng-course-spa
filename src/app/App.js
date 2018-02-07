@@ -13,6 +13,7 @@ import CourseEdit from './courses/CourseEdit';
 import CourseCreate from './courses/CourseCreate';
 
 import { LessonContainer } from './lessons/LessonContainer';
+import { LessonCreate } from './lessons/LessonCreate';
 
 import { StudentsContainer } from './students/students-container';
 import { TeachersContainer } from './teachers/teachers-container';
@@ -66,6 +67,9 @@ class App extends Component {
                 <LinkContainer to="/students">
                   <NavItem>STUDENTS</NavItem>
                 </LinkContainer>
+                <LinkContainer to="/lessons">
+                  <NavItem>LESSONS</NavItem>
+                </LinkContainer>
               </Nav>
               <Nav pullRight>
                 {loginLink}
@@ -95,6 +99,8 @@ class App extends Component {
 
             <PublicRoute exact path="/lessons" token={this.state.token}
               componentRender={{component: LessonContainer}} />
+            <PublicRoute exact path="/lessons/create" token={this.state.token}
+              componentRender={{component: LessonCreate}} />
 
           </Switch>
         </div>

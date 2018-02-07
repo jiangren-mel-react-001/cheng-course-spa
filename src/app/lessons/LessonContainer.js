@@ -15,7 +15,7 @@ export class LessonContainer extends React.Component {
     }
     componentWillMount() {
         this.setState({loading: true});
-        axios.get(`http://localhost:4000/api/lessons?filter={"include":["teacher","course"]}`)
+        axios.get(`https://jr-001-pawpatrol-course-api.herokuapp.com/api/lessons?filter={"include":["teacher","course"]}`)
             .then((response) => this.setState({
                 loading: false,
                 lessons: response.data
