@@ -52,7 +52,7 @@ class App extends Component {
           <Navbar inverse collapseOnSelect>
             <Navbar.Header>
               <Navbar.Brand>
-                Jiangren
+                PACT
               </Navbar.Brand>
               <Navbar.Toggle />
             </Navbar.Header>
@@ -60,15 +60,6 @@ class App extends Component {
               <Nav>
                 <LinkContainer to="/courses">
                   <NavItem>COURSES</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/teachers">
-                  <NavItem>TEACHERS</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/students">
-                  <NavItem>STUDENTS</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/lessons">
-                  <NavItem>LESSONS</NavItem>
                 </LinkContainer>
               </Nav>
               <Nav pullRight>

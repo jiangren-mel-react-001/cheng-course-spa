@@ -20,7 +20,7 @@ export default class CourseDetail extends React.Component {
             <div>
                 <Link className="btn btn-primary" to={{
                     pathname: '/courses/edit',
-                    state: { detail: this.props.detail }
+                    state: { detail: detail }
                 }}>
                     Edit
                 </Link>

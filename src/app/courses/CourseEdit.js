@@ -4,7 +4,7 @@ import axios from 'axios';
 export default class CourseEdit extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {...props.detail};
+        this.state = {...props.location.state.detail};
         this.onInputChange = this.onInputChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -31,7 +31,7 @@ export default class CourseEdit extends React.Component {
         return (
             <form onSubmit={this.onSubmit} className="container">
                 <div className="form-group">
-                    <label>Course Name</label>
+                    <label>Name</label>
                     <input type="text" className="form-control" 
                         value={this.state.name} 
                         name="name" 
@@ -39,7 +39,7 @@ export default class CourseEdit extends React.Component {
                     />
                 </div>
                 <div className="form-group">
-                    <label>Course Description</label>
+                    <label>skills</label>
                     <textarea type="text" className="form-control" 
                         name="description" 
                         value={this.state.description} 
@@ -47,7 +47,7 @@ export default class CourseEdit extends React.Component {
                     />
                 </div>
                 <div className="form-group">
-                    <label>Course image</label>
+                    <label>image</label>
                     <textarea type="text" className="form-control" 
                         name="image" 
                         value={this.state.image} 

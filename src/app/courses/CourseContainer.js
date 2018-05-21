@@ -46,12 +46,12 @@ export class CourseContainer extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="jumbotron">
-                        <h1>Jiangren Courses</h1>
+                        <h1>Team members</h1>
                         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque officiis similique quis voluptatem nemo autem suscipit labore pariatur vitae, cumque enim dolorem laborum, mollitia voluptate sequi culpa consequuntur quia dolores?</p>
                     </div>
                 </div>
                 <div className="row">
-                    <Link className="btn btn-primary" to="/courses/create">Add a new course</Link>
+                    <Link className="btn btn-primary" to="/courses/create">Add a new member</Link>
                     <Spinner loading={this.state.loading} />
                 </div>
                 <div className="row">
